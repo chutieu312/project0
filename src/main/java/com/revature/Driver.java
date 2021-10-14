@@ -1,14 +1,15 @@
 package com.revature;
 
 import com.revature.controller.AccountController;
+import com.revature.controller.MenuController;
 
 
 public class Driver {
 
 	
 	public static void main(String[] args) {
-		AccountController accCtr = AccountController.getAccount();
-		accCtr.run();
+		MenuController menuController = new MenuController();
+		menuController.welcomeMenu();
 
 	}
 
