@@ -23,6 +23,6 @@ public interface BankDAO {
 
 	BankAccount findAccountById(int bank_id);
 
-	boolean udateAccountBalance(int bank_id, double account_balance);
+	double udateAccountBalance(int bank_id, double account_balance);
 	
 }	

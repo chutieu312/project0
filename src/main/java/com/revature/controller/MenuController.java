@@ -2,8 +2,12 @@ package com.revature.controller;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.revature.models.Account;
 import com.revature.models.BankAccount;
+
 
 
 
@@ -12,10 +16,12 @@ public class MenuController {
 	private static Scanner scan = new Scanner(System.in); 
 	private static AccountController accountController = AccountController.getAccountCtr();
 	private static BankController bankController = new BankController();
+	public static Logger log = LoggerFactory.getLogger(MenuController.class);
 	
 	String response;
 	//====================================================	
 	public void welcomeMenu() {
+		log.info("In welcomeMenu");
 		System.out.println("  Welcome to Bank Application!");
 		commandMenu("WELCOME");
 		response = scan.nextLine();
@@ -43,7 +49,7 @@ public class MenuController {
 	}
 	//====================================================	
 	private void registerMenu() {
-		
+		log.info("In register Menu. User choose Single account or join-account");
 		// For now just register for customer.
 		String firstName,lastName,username,password,
 		firstName2,lastName2,username2,password2;
@@ -89,17 +95,17 @@ public class MenuController {
 	}
 	//====================================================
 	private void loginMenu() {
-		
-		String username = "thesky312"; //"thesky312";"youngmax91"
-		String password = "password5";
+		log.info("In loginMenu. User enter username and input.");
+		String username;// = "thesky312"; //"thesky312";"youngmax91"
+		String password;// = "password5";
 		
 		commandMenu("LOGIN");
-//		System.out.println("Username: ");
-//		username = scan.nextLine();
-//		System.out.println("Password: ");
-//		password = scan.nextLine();
-//		
-//		System.out.println(username+" "+password);
+		System.out.println("Username: ");
+		username = scan.nextLine();
+		System.out.println("Password: ");
+		password = scan.nextLine();
+		
+		System.out.println(username+" "+password);
 		
 		accountController.login(username,password);
 		

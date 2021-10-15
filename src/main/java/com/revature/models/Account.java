@@ -151,7 +151,7 @@ public class Account {
 	@Override
 	public String toString() {
 		return type + " id: " + id + ", First Name: " + first_name + ", Last Name: " + last_name
-				+ ", username: " + user_name +  ", Bank Accounts: " + bankAccounts;
+				+ ", username: " + user_name + ", password: " + pass_word + ", Bank Accounts: " + bankAccounts;
 	}
 
 

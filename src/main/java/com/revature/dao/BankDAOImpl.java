@@ -237,10 +237,10 @@ public class BankDAOImpl implements BankDAO {
 	}
 
 	@Override
-	public boolean udateAccountBalance(int bank_id, double account_balance) {
+	public double udateAccountBalance(int bank_id, double account_balance) {
 		try(Connection conn = ConnectionUtil.getConnection()){ 
 			String sql = "UPDATE accounts\r\n"
-					+ "SET account_balance = ? WHERE id = ? RETURNING TRUE ;";
+					+ "SET account_balance = ? WHERE id = ? RETURNING account_balance ;";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -251,13 +251,13 @@ public class BankDAOImpl implements BankDAO {
 			ResultSet result = statement.executeQuery();
 			
 			if(result.next())
-				return result.getBoolean(1);
+				return result.getDouble(1);
 			
 		
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		return false;
+		return -1;
 	}
 
 }

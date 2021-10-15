@@ -3,6 +3,10 @@ package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.revature.controller.AccountController;
 import com.revature.dao.AccountDAO;
 import com.revature.dao.AccountDAOImpl;
 import com.revature.dao.BankDAO;
@@ -15,6 +19,7 @@ public class AccountService {
 	
 	private AccountDAO accountDAO = new AccountDAOImpl();
 	private BankService bankService = new BankService();
+	public static Logger log = LoggerFactory.getLogger(AccountService.class);
 	//private BankDAO bankDAO = new BankDAOImpl();
 	
 	private static AccountService accService;
@@ -30,61 +35,97 @@ public class AccountService {
 		return accountDAO.findAccount(username, password);
 	}
 	
-	public void deposit(int bank_id, double amount) {
-		if (amount < 0) 
+	public double deposit(int bank_id, double amount) {
+		log.info("In deposit: deposit: "+amount+" to "+bank_id);
+		if (amount < 0) {
 			System.out.println("Please enter a positive amount.");
+			return -1;
+		}
 		else {
 			BankAccount ba =  bankService.getBankAccount(bank_id);
-			if(!ba.isActive())
+			if(!ba.isActive()) {
 				System.out.println("Account is not active!");
+				return -1;
+			}
 			else {
 				ba.setAccount_balance(ba.getAccount_balance()+amount);
-				if(bankService.udateBalance(bank_id,ba.getAccount_balance()))
+				double newBalance = bankService.udateBalance(bank_id,ba.getAccount_balance());
+				if(newBalance!=-1) {
 					System.out.println("Deposit successfully.");
-				else
+					return newBalance;
+				}
+				else {
 					System.out.println("Can not deposit. Please try again.");
-			}
-				
+					return -1;
+				}
+			}		
 		}	
 	}
-	public void withdraw(int bank_id, double amount) {
-		if (amount < 0) 
+	public double withdraw(int bank_id, double amount) {
+		log.info("In withdraw: withdraw: "+amount+" from "+bank_id);
+		if (amount < 0) {
 			System.out.println("Please enter a positive amount.");
+			return -1;
+		}
 		else {
 			BankAccount ba =  bankService.getBankAccount(bank_id);
-			if(!ba.isActive())
+			if(!ba.isActive()) {
 				System.out.println("Account is not active!");
-			else if (ba.getAccount_balance()<amount) {
+				return -1;
+			}
+			else if (ba.getAccount_balance()<amount) { 
 				System.out.println("The amount withdraw is larger than account balance.");
+				return -1;
 			}
 			else {
 				ba.setAccount_balance(ba.getAccount_balance()-amount);
-				if(bankService.udateBalance(bank_id,ba.getAccount_balance()))
+				double newBalance = bankService.udateBalance(bank_id,ba.getAccount_balance());
+				if(newBalance!=-1) {
 					System.out.println("withdraw successfully.");
-				else
+					return newBalance;
+				}
+				else {
 					System.out.println("Can not withdraw. Please try again.");
+					return -1;
+				}
 			}
 				
 		}	
 	}
-	public void transfer(int bank_id1,int bank_id2, double amount) {
-		if (amount < 0) 
+	public ArrayList<Double> transfer(int bank_id1,int bank_id2, double amount) {
+		log.info("In transfer: transfer: "+amount+" from account "+bank_id1
+				+" to account "+bank_id2);
+		ArrayList<Double> arrayList = new ArrayList<>();
+		if (amount < 0) {
 			System.out.println("Please enter a positive amount.");
+			return arrayList;
+		}
 		else {
 			BankAccount ba1 =  bankService.getBankAccount(bank_id1);
 			BankAccount ba2 =  bankService.getBankAccount(bank_id2);
-			if (!ba1.isActive() || !ba2.isActive()) 
+			if (!ba1.isActive() || !ba2.isActive()) {
 				System.out.println("Account is not active!");
-			else if(ba1.getAccount_balance()<amount) 
+				return arrayList;
+			}
+			else if(ba1.getAccount_balance()<amount) {
 				System.out.println("The amount withdraw is larger than account balance.");
+				return arrayList;
+			}
 			else {
 				ba1.setAccount_balance(ba1.getAccount_balance()-amount);
 				ba2.setAccount_balance(ba2.getAccount_balance()+amount);
-				if(bankService.udateBalance(bank_id1,ba1.getAccount_balance()) && 
-						bankService.udateBalance(bank_id2,ba2.getAccount_balance()))
+				double newBalance1 = bankService.udateBalance(bank_id1,ba1.getAccount_balance());
+				double newBalance2 = bankService.udateBalance(bank_id2,ba2.getAccount_balance());
+				arrayList.add(newBalance1);
+				arrayList.add(newBalance2);
+				if(newBalance1 !=-1 && newBalance2 !=-1) {
 					System.out.println("Transfer successfully.");
-				else
-					System.out.println("Can not transfer. Please try again.");				
+					return arrayList;
+				}
+				else {
+					System.out.println("Can not transfer. Please try again.");
+					return arrayList;
+				}		
 			}
 		}
 		

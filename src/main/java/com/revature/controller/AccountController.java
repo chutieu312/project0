@@ -3,10 +3,15 @@ package com.revature.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.revature.models.Account;
 import com.revature.models.BankAccount;
 import com.revature.services.AccountService;
 import com.revature.services.BankService;
+import java.security.NoSuchAlgorithmException;  
+import java.security.MessageDigest;  
 
 
 public class AccountController {
@@ -14,6 +19,8 @@ public class AccountController {
 	private static Scanner scan = new Scanner(System.in); 
 	private AccountService accountService = AccountService.getAccount();
 	private static BankService bankService = new BankService();
+	public static Logger log = LoggerFactory.getLogger(AccountController.class);
+	
 	String response;
 	
 	private static AccountController accCtr;
@@ -26,7 +33,8 @@ public class AccountController {
 	
 	public void login(String username, String password) {
 		Account account;
-		account =  accountService.login(username,password);
+		String encryptedpassword = encodePassword(password);
+		account =  accountService.login(username,encryptedpassword);
 		
 		if (account == null) {
 			System.out.println("Invalid username or password.");
@@ -56,6 +64,7 @@ public class AccountController {
 		response = scan.nextLine();
 		
 		int account_id;
+		int account_id2;
 		double amount;
 		
 		while (!response.equals("4")) {
@@ -81,8 +90,9 @@ public class AccountController {
 				case "3":
 					commandMenu("TRANSFER");
 					account_id = scan.nextInt();
+					account_id2 = scan.nextInt();
 					amount = scan.nextDouble();// will make cursor point to new line
-					accountService.transfer(account_id,amount);
+					accountService.transfer(account_id,account_id2,amount);
 					commandMenu("CUSTOMER");
 					response = scan.nextLine(); // to read a newline
 					response = scan.nextLine();
@@ -101,6 +111,7 @@ public class AccountController {
 	
 //=======================================================
 	private void employeeMenu(Account account) {
+		log.info("In employeeMenu");
 		System.out.println("-----------------------------------");
 		System.out.println("\t EMPLOYEE");
 		System.out.println("Hi, " + account.getName());
@@ -144,6 +155,7 @@ public class AccountController {
 	
 //====================================================
 	private void adminMenu(Account account) {
+		log.info("In admin menu");
 		System.out.println("-----------------------------------");
 		System.out.println("\t ADMIN");
 		System.out.println("Hi, " + account.getName());
@@ -283,24 +295,64 @@ public class AccountController {
 		}
 		
 	}
+	
+	public String encodePassword (String password) {
+		
+		String encryptedpassword = null;  
+        try   
+        {  
+        	MessageDigest m = MessageDigest.getInstance("MD5"); 
+            m.update(password.getBytes());  
+            
+            /* Convert the hash value into bytes */   
+            byte[] bytes = m.digest();  
+              
+            /* The bytes array has bytes in decimal form. Converting it into hexadecimal format. */  
+            StringBuilder s = new StringBuilder();  
+            for(int i=0; i< bytes.length ;i++)  
+            {  
+                s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));  
+            }  
+              
+            /* Complete hashed password in hexadecimal format */  
+            encryptedpassword = s.toString(); 
+            return encryptedpassword;
+        }
+        catch (NoSuchAlgorithmException e)   
+        {  
+            e.printStackTrace();  
+        } 
+		
+		return encryptedpassword;
+		
+	}
+	
 	public void register(String firstName, String lastName, String username, String password, String type) {
 		
 		// Continue from register-Menu
 		System.out.println("Creating account...");
-		Account account = accountService.createAccount(firstName,lastName,username,password,type);
+        String encryptedpassword = encodePassword(password);  
+        System.out.println(encryptedpassword);
+            
+		Account account = accountService.createAccount(firstName,lastName,username,encryptedpassword,type);
 		if(account!=null) {
 			System.out.println("Account created successfully."
 					+ "\n Please waiting for approving.");
 		}
 		else
 			System.out.println("Unsuccessfully. Try agian.");
+ 
 		
 	}
-	public void registerJoint(String firstName, String lastName, String username, String password, String firstName2,
+	public void registerJoint(String firstName, String lastName, String username, 
+			String password, String firstName2,
 			String lastName2, String username2, String password2, String type) {
 		
 		System.out.println("Creating account...");
-		List<Account> accounts = accountService.createJoinAccount(firstName,lastName,username,password,firstName2,lastName2,username2,password2,type);
+		String encryptedpassword = encodePassword(password); 
+		String encryptedpassword2 = encodePassword(password2); 
+		List<Account> accounts = accountService.createJoinAccount(firstName,lastName,username,encryptedpassword,
+				firstName2,lastName2,username2,encryptedpassword2,type);
 		if(accounts!=null) {
 			System.out.println("Join-Account created successfully."
 					+ "\n Please waiting for approving.");

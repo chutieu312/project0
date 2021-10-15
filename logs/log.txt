@@ -1,0 +1,44 @@
+07:58:25.151 [] [main] INFO  c.r.services.AccountServiceTest - In setAccountServiceTest
+07:58:25.167 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+07:58:25.169 [] [main] INFO  c.r.services.AccountServiceTest - In testDeposit
+08:14:14.212 [] [main] INFO  c.r.services.AccountServiceTest - In setAccountServiceTest
+08:14:14.229 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+08:14:14.231 [] [main] INFO  c.r.services.AccountServiceTest - In testWithdraw
+08:14:15.708 [] [main] INFO  c.r.services.AccountServiceTest - In clearResult
+08:14:15.714 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+08:14:15.715 [] [main] INFO  c.r.services.AccountServiceTest - In testDeposit
+08:14:16.543 [] [main] INFO  c.r.services.AccountServiceTest - In clearResult
+08:14:16.553 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+08:14:16.554 [] [main] INFO  c.r.services.AccountServiceTest - In testTransfer
+08:14:18.209 [] [main] INFO  c.r.services.AccountServiceTest - In clearResult
+08:14:18.245 [] [main] INFO  c.r.services.AccountServiceTest - in clearAccountService
+08:22:49.527 [] [main] INFO  c.r.services.AccountServiceTest - In setAccountServiceTest
+08:22:49.548 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+08:22:49.551 [] [main] INFO  c.r.services.AccountServiceTest - In testWithdraw
+08:22:50.810 [] [main] INFO  c.r.services.AccountServiceTest - In clearResult
+08:22:50.823 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+08:22:50.824 [] [main] INFO  c.r.services.AccountServiceTest - In testDeposit
+08:22:51.704 [] [main] INFO  c.r.services.AccountServiceTest - In clearResult
+08:22:51.709 [] [main] INFO  c.r.services.AccountServiceTest - setAccountBalance
+08:22:51.709 [] [main] INFO  c.r.services.AccountServiceTest - In testTransfer
+08:22:53.312 [] [main] INFO  c.r.services.AccountServiceTest - In clearResult
+08:22:53.317 [] [main] INFO  c.r.services.AccountServiceTest - in clearAccountService
+08:23:38.377 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+08:27:27.939 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+08:30:20.766 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:11:13.344 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:11:56.736 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:12:16.206 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+09:15:21.941 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:15:27.312 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+09:15:53.870 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:15:58.574 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+09:16:21.086 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:16:25.022 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+09:23:00.435 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:23:08.637 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+09:24:01.645 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+09:24:13.645 [] [main] INFO  c.r.controller.AccountController - In admin menu
+09:26:09.524 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:26:23.389 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+09:26:31.007 [] [main] INFO  c.r.controller.AccountController - In admin menu

@@ -60,7 +60,7 @@ public class BankService {
 		return bankDAO.findAccountById(bank_id);
 	}
 
-	public boolean udateBalance(int bank_id, double account_balance) {
+	public double udateBalance(int bank_id, double account_balance) {
 	
 		return bankDAO.udateAccountBalance(bank_id,account_balance);
 	}

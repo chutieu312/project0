@@ -33,7 +33,7 @@ public class AccountDAOImpl implements AccountDAO {
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
-			System.out.println("In AccountDAOImpl: "+username+" "+password); 
+			//System.out.println("In AccountDAOImpl: "+username+" "+password); 
 			
 			statement.setString(1, username);
 			statement.setString(2, password);
