@@ -150,9 +150,11 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [type=" + type + ", id=" + id + ", first_name=" + first_name + ", last_name=" + last_name
-				+ ", user_name=" + user_name + ", pass_word=" + pass_word + ", bankAccounts=" + bankAccounts + "]";
+		return type + " id: " + id + ", First Name: " + first_name + ", Last Name: " + last_name
+				+ ", username: " + user_name +  ", Bank Accounts: " + bankAccounts;
 	}
+
+
 	
 	
 

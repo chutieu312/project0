@@ -16,7 +16,7 @@ public class MenuController {
 	String response;
 	//====================================================	
 	public void welcomeMenu() {
-		System.out.println("Welcome to Bank Application!");
+		System.out.println("  Welcome to Bank Application!");
 		commandMenu("WELCOME");
 		response = scan.nextLine();
 		
@@ -43,15 +43,55 @@ public class MenuController {
 	}
 	//====================================================	
 	private void registerMenu() {
-		// TODO Auto-generated method stub
 		
+		// For now just register for customer.
+		String firstName,lastName,username,password,
+		firstName2,lastName2,username2,password2;
+
+		System.out.println("\t What would you like to register? \n");
+		System.out.println("1. Single Account \t 2.Join-Account");
+		response = scan.nextLine();
+		if (response.equalsIgnoreCase("1")) {
+			commandMenu("REGISTER");
+			System.out.println("First Name: ");
+			firstName = scan.nextLine();
+			System.out.println("Last Name: ");
+			lastName = scan.nextLine();
+			System.out.println("Username: ");
+			username = scan.nextLine();
+			System.out.println("Password: ");
+			password = scan.nextLine();
+			
+			accountController.register(firstName,lastName,username,password,"CUSTOMER");
+		}
+		else {
+			commandMenu("REGISTER-JOIN");
+			System.out.println("First Name1: ");
+			firstName = scan.nextLine();
+			System.out.println("Last Name1: ");
+			lastName = scan.nextLine();
+			System.out.println("Username1: ");
+			username = scan.nextLine();
+			System.out.println("Password1: ");
+			password = scan.nextLine();
+			commandMenu("REGISTER");
+			System.out.println("First Name2: ");
+			firstName2 = scan.nextLine();
+			System.out.println("Last Name2: ");
+			lastName2 = scan.nextLine();
+			System.out.println("Username2: ");
+			username2 = scan.nextLine();
+			System.out.println("Password2: ");
+			password2 = scan.nextLine();
+			accountController.registerJoint(firstName,lastName,username,password,
+					firstName2,lastName2,username2,password2,"CUSTOMER");
+		}
 	}
 	//====================================================
 	private void loginMenu() {
 		
-		Account account;
-		String username = "sarah92";
-		String password = "password3";
+		String username = "thesky312"; //"thesky312";"youngmax91"
+		String password = "password5";
 		
 		commandMenu("LOGIN");
 //		System.out.println("Username: ");
@@ -61,115 +101,10 @@ public class MenuController {
 //		
 //		System.out.println(username+" "+password);
 		
-		account = accountController.login(username,password);
-		
-		if (account == null) {
-			System.out.println("Invalid username or password.");
-		}
-		else {
-			if (account.getType().equalsIgnoreCase("customers")) {
-				customerMenu(account);
-			}
-			else if (account.getType().equalsIgnoreCase("employees")) {
-				employeeMenu(account);
-			}
-			else if(account.getType().equalsIgnoreCase("administrators")) {
-					adminMenu(account);
-			}
-		}
-	}
-//====================================================
-	private void adminMenu(Account account) {
-		System.out.println("Hi, " + account.getName());
+		accountController.login(username,password);
 		
 	}
-//=======================================================
-	private void employeeMenu(Account account) {
-		System.out.println("-----------------------------------");
-		System.out.println("\t EMPLOYEE");
-		System.out.println("Hi, " + account.getName());
-		
-		commandMenu("EMPLOYEE");
-		response = scan.nextLine();
-		
-		
-		while (!response.equals("4")) {
-			switch (response){
-				case "1":
-					bankController.getAllAccounts();
-					commandMenu("EMPLOYEE");
-					response = scan.nextLine();
-					break;
-				case "2":
-					bankController.getAllCustomers();
-					commandMenu("EMPLOYEE");
-					response = scan.nextLine();
-					break;
-				case "3":
-					bankController.getAllPendingAccounts();
-					commandMenu("APPROVING");
-					int id = scan.nextInt();
-					if(bankController.approvedAccount(id))
-						System.out.println("Approved sucessfully.");
-					else
-						System.out.println("Cannot approve. Please try again.");
-					
-					break;
-				case "4":
-					break;
-				default:
-					System.out.println("Invalid input. Please try again.");
-				
-					response = scan.nextLine();
-					break;
-			}			
-		}
-		
-	}
-//=======================================================
-	private void customerMenu(Account account) {
-		System.out.println("-----------------------------------");
-		System.out.println("\t CUSTOMER");
-		System.out.println("Hi, " + account.getName());
-		for(BankAccount ba : account.getBankAccounts())
-			System.out.println(ba.toString());
-		commandMenu("CUSTOMER");
-		response = scan.nextLine();
-		
-		int account_id;
-		double amount;
-		
-		while (!response.equals("4")) {
-			switch (response){
-				case "1":
-					commandMenu("DEPOSIT");
-					account_id = scan.nextInt();
-					amount = scan.nextDouble();
-					accountController.deposit(account_id,amount);
-					
-					
-					commandMenu("CUSTOMER");
-					response = scan.nextLine();
-					break;
-				case "2":
-					commandMenu("WITHDRAW");
-					
-					response = scan.nextLine();
-					break;
-				case "3":
-					commandMenu("TRANSFER");
-					break;
-				case "4":
-					break;
-				default:
-					System.out.println("Invalid input. Please try again.");
-				
-					response = scan.nextLine();
-					break;
-			}			
-		} 
-		
-	}
+	
 	//====================================================
 	private void commandMenu(String page) {
 		switch (page) {
@@ -179,9 +114,20 @@ public class MenuController {
 				System.out.println("1. Login \t 2. Register \t 3. Exit");
 				System.out.println("User inputs: ");
 				break;
+			case "REGISTER-JOIN":
+				System.out.println("---------------REGISTER--------------------");
+				System.out.println();
+				System.out.println("Please enter first person information: "
+						+ "[First Name] [Last Name] [Username] "
+						+ "[password]");
+				System.out.println("Please enter second person information: "
+						+ "[First Name] [Last Name] [Username] "
+						+ "[password]");
+				System.out.println("User inputs: ");
+				break;
 			case "REGISTER":
-				System.out.println("-----------------------------------");
-				System.out.println("\t REGISTER");
+				System.out.println("-----------------REGISTER------------------");
+				System.out.println();
 				System.out.println("Please enter: [First Name] [Last Name] [Username] "
 						+ "[password]");
 				System.out.println("User inputs: ");
@@ -192,60 +138,43 @@ public class MenuController {
 				System.out.println("Please enter: [Username] [password]");
 				System.out.println("User inputs: ");
 				break;
-			// 	customerHOMEPAGE when service got info from db and let controller know about it
-			case "CUSTOMER":
-				System.out.println("-----------------------------------");
-				System.out.println("Please enter what you would like to do: ");
-				System.out.println(	"[1. DEPOSIT] [2. WITHDRAW] [3. TRANSFER] [4. Exit]");
-				System.out.println("User inputs: ");
-				break;
-			case "EMPLOYEE":
-				System.out.println("-----------------------------------");
-				System.out.println("Please enter what you would like to do: ");
-				System.out.println(	"[1. ACCOUNT INFO] [2. PERSONAL INFO] "
-						+ "[3. APPROVE/DENY ACCOUNT] [4. Exit]");				
-				System.out.println("User inputs: ");
-				break;
-			case "APPROVING":
-				System.out.println("-----------------------------------");
-				// Must display a list of pending accounts
-				System.out.println("Please enter the account ID that will be approved.");
-				System.out.println("User inputs: ");
-				break;
-			case "ADMIN":
-				System.out.println("-----------------------------------");
-				System.out.println("Please enter what you would like to do: ");
-				// if choose deposit -> go to deposit page normal
-				System.out.println(	"[1. ACCOUNT INFO] [2. PERSONAL INFO] [3. DEPOSIT] "
-						+ "[4. WITHDRAW] [5. TRANSFER] [6. DELETE ACCOUNT] "
-						+ "[7. APPROVE/DENY ACCOUNT] [8. Exit]");
-				System.out.println("User inputs: ");
-				break;
-			case "DEPOSIT":
-				System.out.println("-----------------------------------");
-				System.out.println("Please enter: [ACCOUNT] [AMOUNT] ");
-				System.out.println("User inputs: ");
-				break;
-			case "WITHDRAW":
-				System.out.println("-----------------------------------");
-				System.out.println("Please enter: [ACCOUNT] [AMOUNT] ");
-				System.out.println("User inputs: ");
-				break;
-			case "TRANSFER":
-				System.out.println("-----------------------------------");
-				System.out.println("Please enter: [FROM ACCOUNT] [TO ACCOUNT] [AMOUNT] ");
-				System.out.println("User inputs: ");
-				break;
-			case "DELETE":
-				System.out.println("-----------------------------------");
-				// must display Bank Account table
-				System.out.println("Please enter account ID to be deleted.] ");
-				System.out.println("User inputs: ");
-				break;
+
 			default:
 				break;
 		}
-		
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
