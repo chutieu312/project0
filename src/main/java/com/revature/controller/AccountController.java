@@ -36,7 +36,7 @@ public class AccountController {
 		String encryptedpassword = encodePassword(password);
 		account =  accountService.login(username,encryptedpassword);
 		
-		if (account == null) {
+		if (account.equals(null)) {
 			System.out.println("Invalid username or password.");
 		}
 		else {

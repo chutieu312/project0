@@ -42,3 +42,47 @@
 09:26:09.524 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
 09:26:23.389 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
 09:26:31.007 [] [main] INFO  c.r.controller.AccountController - In admin menu
+09:56:41.679 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+09:57:52.732 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+10:10:28.563 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+10:10:47.486 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+10:11:45.946 [] [main] INFO  c.r.controller.AccountController - In admin menu
+10:19:19.971 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+10:19:27.390 [] [main] INFO  c.r.controller.AccountController - In admin menu
+10:21:37.012 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+10:22:43.532 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+10:23:11.700 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+10:23:17.481 [] [main] INFO  c.r.controller.AccountController - In admin menu
+10:24:44.343 [] [main] INFO  com.revature.services.AccountService - In deposit: deposit: 500.0 to 1
+10:25:03.515 [] [main] INFO  com.revature.services.AccountService - In deposit: deposit: 400.0 to 3
+10:25:18.763 [] [main] INFO  com.revature.services.AccountService - In deposit: deposit: 700.0 to 4
+10:36:17.293 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+10:37:58.332 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+10:38:14.545 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+10:38:16.595 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+10:39:28.247 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+10:39:35.020 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+10:39:53.646 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+10:42:18.996 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+11:50:47.502 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+11:50:59.041 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+11:51:08.839 [] [main] INFO  c.r.controller.AccountController - In admin menu
+11:51:54.842 [] [main] INFO  com.revature.services.AccountService - In deposit: deposit: 200.0 to 1
+11:52:36.370 [] [main] INFO  com.revature.services.AccountService - In withdraw: withdraw: 200.0 from 1
+11:53:20.361 [] [main] INFO  com.revature.services.AccountService - In transfer: transfer: 200.0 from account 1 to account 2
+11:53:33.097 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+11:53:44.352 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+11:53:46.289 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+11:54:15.512 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+11:54:21.426 [] [main] INFO  c.r.controller.AccountController - In admin menu
+11:54:41.577 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+11:54:50.772 [] [main] INFO  c.r.controller.AccountController - In employeeMenu
+12:21:35.354 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+12:21:38.488 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+12:21:44.886 [] [main] INFO  c.r.controller.AccountController - In admin menu
+12:22:18.904 [] [main] INFO  c.revature.controller.MenuController - In register Menu. User choose Single account or join-account
+12:25:13.280 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+12:25:19.820 [] [main] INFO  c.r.controller.AccountController - In admin menu
+12:58:12.846 [] [main] INFO  c.revature.controller.MenuController - In welcomeMenu
+14:13:32.069 [] [main] INFO  c.revature.controller.MenuController - In loginMenu. User enter username and input.
+14:13:45.275 [] [main] INFO  c.r.controller.AccountController - In admin menu

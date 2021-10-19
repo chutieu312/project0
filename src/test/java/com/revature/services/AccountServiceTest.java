@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 public class AccountServiceTest {
 	
 	public static AccountService accountService;
-	public static int i;
-	public static int j;
-	public static double k;
+	public static int id1;
+	public static int id2;
+	public static double amount;
 	public static double result;
 	public static ArrayList<Double> results;
 	public static Logger log = LoggerFactory.getLogger(AccountServiceTest.class);	
@@ -29,37 +29,37 @@ public class AccountServiceTest {
 	
 	@BeforeAll
 	public static void setAccountServiceTest() {
-		log.info("In setAccountServiceTest");
+		//log.info("In setAccountServiceTest");
 		accountService = AccountService.getAccount();
 		results = new ArrayList<>();
 	}	
 	
 	@BeforeEach
 	public void setAccountBalance() {
-		i = 20;
-		j = 5;
-		k = 100;
+		id1 = 20;
+		id2 = 5;
+		amount = 100;
 		log.info("setAccountBalance");
 	}
 			
 	@Test
 	public void testDeposit() {
 		log.info("In testDeposit");
-		result = accountService.deposit(i,k);
+		result = accountService.deposit(id1,amount);
 		assertEquals(200, result);
 	}			
 	
 	@Test
 	public void testWithdraw() {
-		log.info("In testWithdraw");
-		result = accountService.withdraw(i,k);
+	log.info("In testWithdraw");
+		result = accountService.withdraw(id1,amount);
 		assertEquals(100, result);
 	}
 	
 	@Test
 	public void testTransfer() {
 		log.info("In testTransfer");
-		results = accountService.transfer(i,j,k);
+		results = accountService.transfer(id1,id2,amount);
 		assertEquals(200.0, results.get(0));
 		assertEquals(600.0, results.get(1));
 	}
